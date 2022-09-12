@@ -4,33 +4,40 @@
 // 1 -3,3 8 -9,9
 // 8 7,8 -7,1 9
 
-double[,] CreateMatrixRndInt(int row, int col, int min, int max)
-{
-    double[,] matrix = new double[row, col];
-    Random rnd = new Random();
+ Console.Write("Размер m: ");
+int m = Convert.ToInt32(Console.ReadLine());
+ Console.Write("Размер n: ");
+int n = Convert.ToInt32(Console.ReadLine());
 
-    for (int i = 0; i < matrix.GetLength(0); i++) // строки - row
+double[,] array = new double[m, n];
+
+CreateArrayDouble(array);
+
+WriteArray(array);
+
+Console.WriteLine();
+
+void CreateArrayDouble(double[,] array)
+{
+  for (int i = 0; i < m; i++)
+  {
+    for (int j = 0; j < n; j++)
     {
-        for (int j = 0; j < matrix.GetLength(1); j++) // столбцы - col
-        {
-            matrix[i, j] = rnd.Next (min, max + 1);
-        }
+      array[i, j] = new Random().NextDouble() * 20 -10;
     }
-    return matrix;
+  }
 }
-    void PrintMatrix(int[,] matrix)
-    {
-        for (int i = 0; i < matrix.GetLength(0); i++)
-        {
-            Console.Write("[");
-            for (int j = 0; j < matrix.GetLength(1); j++)
-            {
-                if (j < matrix.GetLength(1) - 1) Console.Write($"{matrix[i, j], 3}");
-                else Console.Write($"{matrix[i, j], 3}");
-            }
-            Console.WriteLine("]");
-        }
-   
-    }
- int [,] array2D = CreateMatrixRndInt(100);
- PrintMatrix(array2D);
+
+void WriteArray (double[,] array)
+{
+for (int i = 0; i < m; i++)
+  {
+      for (int j = 0; j < n; j++)
+      {
+        double Number = Math.Round(array[i, j], 1);
+        Console.Write(Number + " ");
+      }
+      Console.WriteLine();
+  }
+}
+
